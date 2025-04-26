@@ -1,0 +1,6 @@
+@GestorDeClientes.Server_HostAddress = http://localhost:5173
+
+GET {{GestorDeClientes.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
