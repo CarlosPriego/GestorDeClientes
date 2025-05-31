@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GestorDeClientes.Server.Migrations
 {
     [DbContext(typeof(ClientManagment))]
-    [Migration("20250426153728_firstmigrations")]
-    partial class firstmigrations
+    [Migration("20250531163755_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,15 +35,11 @@ namespace GestorDeClientes.Server.Migrations
                     b.Property<int>("age")
                         .HasColumnType("integer");
 
-                    b.Property<string>("email")
+                    b.Property<string>("job")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("password")
                         .IsRequired()
                         .HasColumnType("text");
 

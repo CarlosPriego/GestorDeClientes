@@ -32,15 +32,11 @@ namespace GestorDeClientes.Server.Migrations
                     b.Property<int>("age")
                         .HasColumnType("integer");
 
-                    b.Property<string>("email")
+                    b.Property<string>("job")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("password")
                         .IsRequired()
                         .HasColumnType("text");
 

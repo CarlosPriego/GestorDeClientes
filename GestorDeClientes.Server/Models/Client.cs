@@ -10,8 +10,7 @@ namespace GestorDeClientes.Server.Models
         public int Id { get; set; }
         public String name { get; set; }
         public String surname { get; set; }
-        public String email { get; set; }
-        public String password { get; set; }
+        public String job { get; set; }
         public int phoneNumber { get; set; }
         public int age { get; set; }
 
