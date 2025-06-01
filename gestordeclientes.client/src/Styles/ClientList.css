@@ -1,0 +1,69 @@
+.table-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .table-container th,
+    .table-container td {
+        padding: 14px 18px;
+        text-align: left;
+    }
+
+    .table-container thead {
+        background-color: #256b67;
+        color: white;
+    }
+
+.table-row-topics {
+    border-bottom: 2px solid #005fa3;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.table-row-data:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-row-data:hover {
+    background-color: #e6f0ff;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.table-container td {
+    color: #333;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.delete-button {
+    font-family: sans-serif;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: red;
+    color: whitesmoke;
+}
+
+.update-button {
+    font-family: sans-serif;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: aqua;
+    color: whitesmoke;
+}
+
+.save-button {
+    font-family: sans-serif;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: forestgreen;
+    color: whitesmoke;
+}

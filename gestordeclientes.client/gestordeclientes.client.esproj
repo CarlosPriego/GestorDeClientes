@@ -12,5 +12,6 @@
     <Folder Include="src\Components\Clients\" />
     <Folder Include="src\Hooks\Clients\" />
     <Folder Include="src\Service\" />
+    <Folder Include="src\Styles\" />
   </ItemGroup>
 </Project>

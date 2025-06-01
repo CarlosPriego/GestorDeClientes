@@ -7,7 +7,7 @@ export const postClient = async (clientData) => {
         const response = await axios.post(baseUrl, clientData);
         return response.data;
     } catch (error) {
-        console.log('Error al agregar clientes: ', error);
+        console.log('Error al agregar cliente:', error);
         throw error;
     }
 };
@@ -17,7 +17,7 @@ export const getClient = async () => {
         const response = await axios.get(baseUrl);
         return response.data;
     } catch (error) {
-        console.log('Error al listar clientes: ', error);
+        console.log('Error al listar clientes:', error);
         throw error;
     }
 };
@@ -27,7 +27,7 @@ export const getByIdClient = async (id) => {
         const response = await axios.get(`${baseUrl}/${id}`);
         return response.data;
     } catch (error) {
-        console.log('Error al obtener cliente: ', error);
+        console.log('Error al obtener cliente:', error);
         throw error;
     }
 };
@@ -37,7 +37,7 @@ export const updateClient = async (id, clientData) => {
         const response = await axios.put(`${baseUrl}/${id}`, clientData);
         return response.data;
     } catch (error) {
-        console.log('Error al actualizar cliente: ', error);
+        console.log('Error al actualizar cliente:', error);
         throw error;
     }
 };
@@ -47,7 +47,7 @@ export const deleteClient = async (id) => {
         const response = await axios.delete(`${baseUrl}/${id}`);
         return response.data;
     } catch (error) {
-        console.log('Error al eliminar cliente: ', error);
+        console.log('Error al eliminar cliente:', error);
         throw error;
     }
 };
