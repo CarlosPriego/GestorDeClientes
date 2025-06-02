@@ -1,6 +1,6 @@
 import { deleteClient } from '../../Service/clientService';
 
-export const useDeleteClient = () => {
+const useDeleteClient = () => {
     const eliminarCliente = async (id) => {
         try {
             await deleteClient(id);

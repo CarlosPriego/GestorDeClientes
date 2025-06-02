@@ -34,11 +34,7 @@ const ClientForm = ({ initialData = null, onSubmit, onCancel }) => {
     
     const enviarDatos = async () => {
         try {
-            if (initialData) {
-                await onSubmit(cliente);
-            } else {
-                await guardarCliente(cliente);
-            }
+            await onSubmit(cliente);
             alert(initialData ? "Cliente actualizado con éxito." : "Cliente guardado con éxito.");
             onCancel();
         } catch (error) {
@@ -46,25 +42,31 @@ const ClientForm = ({ initialData = null, onSubmit, onCancel }) => {
         }
     };
 
+
     return (
         <div className="client-form-container">
-            <h1 className="form-title">
-                {initialData ? "Editar Cliente" : "Nuevo Cliente"}
-            </h1>
+            <div className="form-box">
+                <h1 className="form-title">
+                    {initialData ? "Editar Cliente" : "Nuevo Cliente"}
+                </h1>
 
-            <div className="form-inputs">
-                <Input placeholder="name" name="name" value={cliente.name} onChange={actualizarDatos} />
-                <Input placeholder="surname" name="surname" value={cliente.surname} onChange={actualizarDatos} />
-                <Input placeholder="job" name="job" value={cliente.job} onChange={actualizarDatos} />
-                <Input placeholder="phone number" name="phoneNumber" value={cliente.phoneNumber} onChange={actualizarDatos} />
-                <Input placeholder="age" name="age" value={cliente.age} onChange={actualizarDatos} />
-            </div>
+                <div className="form-inputs">
+                    <Input placeholder="name" name="name" value={cliente.name} onChange={actualizarDatos} />
+                    <Input placeholder="surname" name="surname" value={cliente.surname} onChange={actualizarDatos} />
+                    <Input placeholder="job" name="job" value={cliente.job} onChange={actualizarDatos} />
+                    <Input placeholder="phone number" name="phoneNumber" value={cliente.phoneNumber} onChange={actualizarDatos} />
+                    <Input placeholder="age" name="age" value={cliente.age} onChange={actualizarDatos} />
+                </div>
 
-            <div className="form-actions">
-                <Button onClick={enviarDatos}>
-                    {initialData ? "Actualizar" : "Guardar"}
-                </Button>
-                <Button onClick={onCancel}>Cerrar</Button>
+                <div className="form-actions">
+                    <Button
+                        className={initialData ? 'update-button-form' : 'save-button-form'}
+                        onClick={enviarDatos}
+                    >
+                        {initialData ? "Actualizar" : "Guardar"}
+                    </Button>
+                    <Button className='close-button' onClick={onCancel}>Cerrar</Button>
+                </div>
             </div>
         </div>
     );

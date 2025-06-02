@@ -10,7 +10,7 @@ export const useUpdateClient = (onSuccess) => {
         try {
             await updateClient(id, clientData);
             setLoading(false);
-            if (onSuccess) onSuccess(); // para recargar lista
+            if (onSuccess) onSuccess();
         } catch (err) {
             console.error('Error actualizando cliente:', err);
             setError(err);

@@ -46,8 +46,13 @@
     padding: 5px;
     border: none;
     border-radius: 10px;
-    background-color: red;
+    background-color: #E02810;
     color: whitesmoke;
+}
+
+.delete-button:hover {
+    background-color: #B63B2B;
+    cursor: pointer;
 }
 
 .update-button {
@@ -55,15 +60,72 @@
     padding: 5px;
     border: none;
     border-radius: 10px;
-    background-color: aqua;
+    background-color: #109BE0;
     color: whitesmoke;
 }
 
+.update-button:hover {
+    background-color: #38708B;
+    cursor: pointer;
+}
+
 .save-button {
+    margin-left: 10px;
     font-family: sans-serif;
     padding: 5px;
     border: none;
     border-radius: 10px;
     background-color: forestgreen;
     color: whitesmoke;
+}
+
+.save-button:hover {
+    background-color: #416137;
+    cursor: pointer;
+}
+
+.update-button-form {
+    margin-left: 5px;
+    margin-right: 10px;
+    font-family: sans-serif;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #109BE0;
+    color: whitesmoke;
+}
+
+.update-button-form:hover {
+    background-color: #38708B;
+    cursor: pointer;
+}
+
+.save-button-form {
+    margin-left: 5px;
+    margin-right: 10px;
+    font-family: sans-serif;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: forestgreen;
+    color: whitesmoke;
+}
+
+.save-button-form:hover {
+    background-color: #416137;
+    cursor: pointer;
+}
+
+.close-button {
+    font-family: sans-serif;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #E02810;
+    color: whitesmoke;
+}
+
+.close-button:hover {
+    background-color: #B63B2B;
+    cursor: pointer;
 }

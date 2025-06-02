@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { getClient, deleteClient } from '../../Service/clientService';
 import { useUpdateClient } from "../../Hooks/Clients/useUpdateClient";
+import useDeleteClient from "../../Hooks/Clients/useDeleteClient";
+
 import useCreateClient from "../../Hooks/Clients/useCreateClient";
 
 import '../../Styles/ClientList.css';
@@ -11,6 +13,8 @@ export const ClientList = () => {
     const [clientes, setClientes] = useState([]);
     const [editar, setEditar] = useState(null);
     const [showForm, setShowForm] = useState(false);
+
+    const { eliminarCliente } = useDeleteClient();
 
     const { editClient } = useUpdateClient(() => {
         mostrarClientes();
@@ -41,10 +45,7 @@ export const ClientList = () => {
         } else {
             await guardarCliente(formData);
         }
-        await mostrarClientes();
-        setShowForm(false);
-        setEditar(null);
-    };
+    }
 
     return (
         <>
@@ -79,7 +80,7 @@ export const ClientList = () => {
                             <td>
                                 <Button className='delete-button' onClick={async () => {
                                     if (window.confirm("¿Seguro que quieres eliminar?")) {
-                                        await deleteClient(cliente.id);
+                                        await eliminarCliente(cliente.id);
                                         mostrarClientes();
                                     }
                                 }}>Eliminar</Button>
