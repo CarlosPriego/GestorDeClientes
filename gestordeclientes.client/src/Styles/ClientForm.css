@@ -62,6 +62,15 @@ body {
     gap: 1rem;
 }
 
+.error-form {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
 @media (max-width: 480px) {
     .form-box {
         padding: 1rem;
