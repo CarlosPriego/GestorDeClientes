@@ -1,47 +1,50 @@
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+
 import Button from "../Button";
 import Input from "../Input";
-import '../../Styles/ClientForm.css';
-import { useState, useEffect } from "react";
-import useCreateClient from "../../Hooks/Clients/useCreateClient";
 
-const valoresIniciales = {
-    name: '',
-    surname: '',
-    job: '',
-    phoneNumber: '',
-    age: ''
-};
+import '../../Styles/ClientForm.css';
 
 const ClientForm = ({ initialData = null, onSubmit, onCancel }) => {
-    const [cliente, setCliente] = useState(valoresIniciales);
-    const { guardarCliente } = useCreateClient();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors, isSubmitting }
+    } = useForm({
+        defaultValues: {
+            name: "",
+            surname: "",
+            job: "",
+            phoneNumber: "",
+            age: ""
+        }
+    });
 
     useEffect(() => {
         if (initialData) {
-            setCliente(initialData);
+            reset(initialData);
         } else {
-            setCliente(valoresIniciales);
+            reset({
+                name: "",
+                surname: "",
+                job: "",
+                phoneNumber: "",
+                age: ""
+            });
         }
-    }, [initialData]);
+    }, [initialData, reset]);
 
-    const actualizarDatos = (e) => {
-        const { name, value } = e.target;
-        setCliente({
-            ...cliente,
-            [name]: value
-        });
-    };
-    
-    const enviarDatos = async () => {
+    const submitHandler = async (data) => {
         try {
-            await onSubmit(cliente);
+            await onSubmit(data);
             alert(initialData ? "Cliente actualizado con éxito." : "Cliente guardado con éxito.");
             onCancel();
         } catch (error) {
             alert("Error al guardar cliente.");
         }
     };
-
 
     return (
         <div className="client-form-container">
@@ -50,23 +53,62 @@ const ClientForm = ({ initialData = null, onSubmit, onCancel }) => {
                     {initialData ? "Editar Cliente" : "Nuevo Cliente"}
                 </h1>
 
-                <div className="form-inputs">
-                    <Input placeholder="name" name="name" value={cliente.name} onChange={actualizarDatos} />
-                    <Input placeholder="surname" name="surname" value={cliente.surname} onChange={actualizarDatos} />
-                    <Input placeholder="job" name="job" value={cliente.job} onChange={actualizarDatos} />
-                    <Input placeholder="phone number" name="phoneNumber" value={cliente.phoneNumber} onChange={actualizarDatos} />
-                    <Input placeholder="age" name="age" value={cliente.age} onChange={actualizarDatos} />
-                </div>
+                <form onSubmit={handleSubmit(submitHandler)} className="form-inputs">
+                    <Input
+                        placeholder="Nombre"
+                        {...register("name", { required: "El nombre es obligatorio", minLength: { value: 2, message: "Mínimo 2 caracteres" } })}
+                    />
+                    {errors.name && <p className="error-form">{errors.name.message}</p>}
 
-                <div className="form-actions">
-                    <Button
-                        className={initialData ? 'update-button-form' : 'save-button-form'}
-                        onClick={enviarDatos}
-                    >
-                        {initialData ? "Actualizar" : "Guardar"}
-                    </Button>
-                    <Button className='close-button' onClick={onCancel}>Cerrar</Button>
-                </div>
+                    <Input
+                        placeholder="Apellido"
+                        {...register("surname", { required: "El apellido es obligatorio", minLength: { value: 2, message: "Mínimo 2 caracteres" } })}
+                    />
+                    {errors.surname && <p className="error-form">{errors.surname.message}</p>}
+
+                    <Input
+                        placeholder="Trabajo"
+                        {...register("job", { required: "El trabajo es obligatorio" })}
+                    />
+                    {errors.job && <p className="error-form">{errors.job.message}</p>}
+
+                    <Input
+                        placeholder="Telefono"
+                        {...register("phoneNumber", {
+                            required: "El telefono es obligatorio",
+                            pattern: {
+                                value: /^[0-9]+$/,
+                                message: "Solo números permitidos"
+                            }
+                        })}
+                    />
+                    {errors.phoneNumber && <p className="error-form">{errors.phoneNumber.message}</p>}
+
+                    <Input
+                        placeholder="Edad"
+                        type="number"
+                        {...register("age", {
+                            required: "La edad es obligatoria",
+                            min: { value: 0, message: "Edad no puede ser negativa" },
+                            max: { value: 120, message: "Edad no válida" }
+                        })}
+                    />
+                    {errors.age && <p className="error-form">{errors.age.message}</p>}
+
+                    <div className="form-actions">
+                        <Button
+                            type="submit"
+                            className={initialData ? 'update-button-form' : 'save-button-form'}
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? (initialData ? "Actualizando..." : "Guardando...") : (initialData ? "Actualizar" : "Guardar")}
+                        </Button>
+
+                        <Button type="button" className="close-button" onClick={onCancel} disabled={isSubmitting}>
+                            Cerrar
+                        </Button>
+                    </div>
+                </form>
             </div>
         </div>
     );
